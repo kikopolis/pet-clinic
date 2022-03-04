@@ -1,0 +1,35 @@
+<!doctype html>
+<html xmlns:th="https://www.thymeleaf.org" th:replace="~{fragments/layout :: layout (~{::body},'pets')}" lang="en">
+<body>
+	<h2 th:text="#{Pets}">Pets</h2>
+	<table id="pets" class="table table-striped">
+		<thead>
+			<tr>
+				<th th:text="#{Name}" style="width: 200px;">Name</th>
+				<th th:text="#{OwnerName}" style="width: 200px;">Owners Name</th>
+				<th th:text="#{Birthdate}" style="width: 200px;">Birthdate</th>
+				<th th:text="#{Animal}" style="width: 200px;">Animal</th>
+				<th th:text="#{VisitDetails}" style="width: 200px;">Visit Details</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="pet : ${pets}">
+				<td th:text="${pet.name}">Buck</td>
+				<td th:text="${pet.owner.firstName + ' ' + pet.owner.lastName}">John Wyck</td>
+				<td th:text="${#temporals.format(pet.birthDate, 'dd.MM.yyyy')}">12.4.2022</td>
+				<td th:text="${pet.petType.name}">dog</td>
+				<td>
+					<p th:each="visit : ${pet.visits}">
+						<strong th:text="#{VisitDate} + ': '">Visit Date: </strong>
+						<span th:text="${visit.date}">12.4.2022</span>
+						<br />
+						<strong th:text="#{VisitDescription} + ': '">Visit description: </strong>
+						<span th:text="${visit.description}">Describe the visit</span>
+						<br />
+					</p>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</body>
+</html>
