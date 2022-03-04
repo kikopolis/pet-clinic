@@ -1,60 +1,34 @@
 package com.kikopolis.petclinicweb.model;
 
+import com.kikopolis.petclinicweb.model.base.NamedEntity;
+import lombok.*;
+
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.HashSet;
 import java.util.Set;
 
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
+@Getter
+@Setter
+@ToString(onlyExplicitlyIncluded = true)
 @Entity
 @Table(name = "pets")
 public class Pet extends NamedEntity {
-	@Column
+	@Column(nullable = false)
+	@NonNull
+	@ToString.Include
 	private LocalDate birthDate;
 	
 	@ManyToOne
-	@JoinColumn(name = "pet_type_id")
+	@JoinColumn(name = "pet_type_id", nullable = false)
 	private PetType petType;
 	
 	@ManyToOne
-	@JoinColumn(name = "owner_id")
+	@JoinColumn(name = "owner_id", nullable = false)
 	private Owner owner;
 	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "pet")
 	private Set<Visit> visits;
-	
-	public Pet() {
-		this.visits = new HashSet<>();
-	}
-	
-	public LocalDate getBirthDate() {
-		return this.birthDate;
-	}
-	
-	public void setBirthDate(LocalDate birthDate) {
-		this.birthDate = birthDate;
-	}
-	
-	public PetType getPetType() {
-		return this.petType;
-	}
-	
-	public void setPetType(PetType petType) {
-		this.petType = petType;
-	}
-	
-	public Owner getOwner() {
-		return this.owner;
-	}
-	
-	public void setOwner(Owner owner) {
-		this.owner = owner;
-	}
-	
-	public Set<Visit> getVisits() {
-		return this.visits;
-	}
-	
-	public void setVisits(Set<Visit> visits) {
-		this.visits = visits;
-	}
 }

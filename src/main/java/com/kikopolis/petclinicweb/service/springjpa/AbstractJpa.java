@@ -1,6 +1,6 @@
 package com.kikopolis.petclinicweb.service.springjpa;
 
-import com.kikopolis.petclinicweb.model.BaseEntity;
+import com.kikopolis.petclinicweb.model.base.BaseEntity;
 import com.kikopolis.petclinicweb.service.CrudService;
 import org.springframework.data.repository.CrudRepository;
 

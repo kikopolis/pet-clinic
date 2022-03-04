@@ -1,9 +1,17 @@
 package com.kikopolis.petclinicweb.model;
 
+import com.kikopolis.petclinicweb.model.base.Person;
+import lombok.*;
+
 import javax.persistence.*;
-import java.util.HashSet;
 import java.util.Set;
 
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
+@Getter
+@Setter
+@ToString(onlyExplicitlyIncluded = true)
 @Entity
 @Table(name = "veterinaries")
 public class Veterinary extends Person {
@@ -11,17 +19,6 @@ public class Veterinary extends Person {
 	@JoinTable(name = "veterinary_specialties",
 			joinColumns = @JoinColumn(name = "veterinary_id"),
 			inverseJoinColumns = @JoinColumn(name = "specialty_id"))
+	@NonNull
 	private Set<Specialty> specialties;
-	
-	public Veterinary() {
-		this.specialties = new HashSet<>();
-	}
-	
-	public Set<Specialty> getSpecialties() {
-		return this.specialties;
-	}
-	
-	public void setSpecialties(Set<Specialty> specialties) {
-		this.specialties = specialties;
-	}
 }

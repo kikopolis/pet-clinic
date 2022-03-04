@@ -1,6 +1,6 @@
 package com.kikopolis.petclinicweb.service.map;
 
-import com.kikopolis.petclinicweb.model.BaseEntity;
+import com.kikopolis.petclinicweb.model.base.BaseEntity;
 import com.kikopolis.petclinicweb.service.CrudService;
 
 import java.util.*;

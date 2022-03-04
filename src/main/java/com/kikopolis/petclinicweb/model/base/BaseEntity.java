@@ -1,4 +1,8 @@
-package com.kikopolis.petclinicweb.model;
+package com.kikopolis.petclinicweb.model.base;
+
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -6,19 +10,15 @@ import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 import java.io.Serializable;
 
+@Getter
+@Setter
+@ToString(onlyExplicitlyIncluded = true)
 @MappedSuperclass
-public class BaseEntity implements Serializable {
+public abstract class BaseEntity implements Serializable {
+	@ToString.Include
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
-	public Long getId() {
-		return this.id;
-	}
-	
-	public void setId(Long id) {
-		this.id = id;
-	}
 	
 	public boolean isNew() {
 		return this.id == null;
