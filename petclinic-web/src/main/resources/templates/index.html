@@ -1,0 +1,12 @@
+<!doctype html>
+<html xmlns:th="https://www.thymeleaf.org" th:replace="~{fragments/layout :: layout (~{::body},'home')}" lang="en">
+
+<body>
+	<h2 th:text="#{welcome}">Welcome</h2>
+	<div class="row">
+		<div class="col-md-12">
+			<img class="img-responsive" th:src="@{/resources/images/pets.png}" alt="PetClinic Welcome Image"  src=""/>
+		</div>
+	</div>
+</body>
+</html>
