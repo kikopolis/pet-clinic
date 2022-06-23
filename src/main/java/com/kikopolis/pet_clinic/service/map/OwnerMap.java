@@ -8,6 +8,9 @@ import com.kikopolis.pet_clinic.service.PetTypeService;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @Service
 @Profile({"default", "map"})
 public class OwnerMap extends AbstractMap<Owner, Long> implements OwnerService {
@@ -20,8 +23,14 @@ public class OwnerMap extends AbstractMap<Owner, Long> implements OwnerService {
 	}
 	
 	@Override
-	public Owner findByLastName(String lastName) {
-		return null;
+	public Set<Owner> findByLastName(String lastName) {
+		Set<Owner> owners = new HashSet<>();
+		for (Owner owner : this.map.values()) {
+			if (lastName.equals(owner.getLastName())) {
+				owners.add(owner);
+			}
+		}
+		return owners;
 	}
 	
 	@Override
